@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import pages.LoginPage;
 
 public class LoginTest extends BaseTest {
-    @Test
+    @Test(priority=1)
     public void successfulLogin() {
 
         LoginPage loginPage =
@@ -23,7 +23,7 @@ public class LoginTest extends BaseTest {
                         .contains(
                                 "logged-in-successfully"));
     }
-    @Test
+    @Test(priority=2)
     public void invalidPassword() {
 
         LoginPage loginPage =
@@ -39,4 +39,69 @@ public class LoginTest extends BaseTest {
                 page.locator("#error")
                         .isVisible());
     }
+    @Test(priority=3)
+    public void invalidUsername() {
+
+        LoginPage loginPage =
+                new LoginPage(page);
+
+        loginPage.navigateToLoginPage();
+
+        loginPage.login(
+                "wrongusername",
+                "Password123");
+
+        Assert.assertTrue(
+                page.locator("#error")
+                        .isVisible());
+    }
+    @Test(priority=4)
+    public void emptyUsername() {
+
+        LoginPage loginPage =
+                new LoginPage(page);
+
+        loginPage.navigateToLoginPage();
+
+        loginPage.login(
+                "",
+                "Password123");
+
+        Assert.assertTrue(
+                page.locator("#error")
+                        .isVisible());
+    }
+    @Test(priority=5)
+    public void emptyPassword() {
+
+        LoginPage loginPage =
+                new LoginPage(page);
+
+        loginPage.navigateToLoginPage();
+
+        loginPage.login(
+                "student",
+                "");
+
+        Assert.assertTrue(
+                page.locator("#error")
+                        .isVisible());
+    }
+    @Test(priority=6)
+    public void emptyUsernameAndPassword() {
+
+        LoginPage loginPage =
+                new LoginPage(page);
+
+        loginPage.navigateToLoginPage();
+
+        loginPage.login(
+                "",
+                "");
+
+        Assert.assertTrue(
+                page.locator("#error")
+                        .isVisible());
+    }
+
 }
