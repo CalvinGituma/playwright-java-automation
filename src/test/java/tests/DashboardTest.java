@@ -15,11 +15,12 @@ public class DashboardTest extends BaseTest {
         DashboardPage dashboardPage =
                 new DashboardPage(page);
 
-        loginPage.navigateToLoginPage();
+        loginPage.navigateToLoginPage(
+                config.getProperty("base.url"));
 
         loginPage.login(
-                "student",
-                "Password123");
+                config.getProperty("username"),
+                config.getProperty("password"));
 
 //        Assert.assertTrue(
 //                dashboardPage.isDashboardDisplayed());
@@ -34,8 +35,12 @@ public class DashboardTest extends BaseTest {
         LoginPage loginPage = new LoginPage(page);
         DashboardPage dashboardPage = new DashboardPage(page);
 
-        loginPage.navigateToLoginPage();
-        loginPage.login("student", "Password123");
+        loginPage.navigateToLoginPage(
+                config.getProperty("base.url"));
+
+        loginPage.login(
+                config.getProperty("username"),
+                config.getProperty("password"));
 
         dashboardPage.clickLogout();
 

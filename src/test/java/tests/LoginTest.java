@@ -4,19 +4,23 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import utils.ConfigReader;
 
 public class LoginTest extends BaseTest {
+    ConfigReader config = new ConfigReader();
+
     @Test(priority=1)
     public void successfulLogin() {
 
         LoginPage loginPage =
                 new LoginPage(page);
 
-        loginPage.navigateToLoginPage();
+        loginPage.navigateToLoginPage(
+                config.getProperty("base.url"));
 
         loginPage.login(
-                "student",
-                "Password123");
+                config.getProperty("username"),
+                config.getProperty("password"));
 
         Assert.assertTrue(
                 page.url()
@@ -29,11 +33,11 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage =
                 new LoginPage(page);
 
-        loginPage.navigateToLoginPage();
-
+        loginPage.navigateToLoginPage(
+                config.getProperty("base.url"));
         loginPage.login(
-                "student",
-                "wrongpassword");
+                config.getProperty("username"),
+                config.getProperty("wrongPassword"));
 
         Assert.assertTrue(
                 page.locator("#error")
@@ -45,11 +49,12 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage =
                 new LoginPage(page);
 
-        loginPage.navigateToLoginPage();
+        loginPage.navigateToLoginPage(
+                config.getProperty("base.url"));
 
         loginPage.login(
-                "wrongusername",
-                "Password123");
+                config.getProperty("wrongUsername"),
+                config.getProperty("password"));
 
         Assert.assertTrue(
                 page.locator("#error")
@@ -61,11 +66,11 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage =
                 new LoginPage(page);
 
-        loginPage.navigateToLoginPage();
-
+        loginPage.navigateToLoginPage(
+                config.getProperty("base.url"));
         loginPage.login(
-                "",
-                "Password123");
+                config.getProperty("emptyUsername"),
+                config.getProperty("password"));
 
         Assert.assertTrue(
                 page.locator("#error")
@@ -77,11 +82,12 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage =
                 new LoginPage(page);
 
-        loginPage.navigateToLoginPage();
+        loginPage.navigateToLoginPage(
+                config.getProperty("base.url"));
 
         loginPage.login(
-                "student",
-                "");
+                config.getProperty("username"),
+                config.getProperty("emptyPassword"));
 
         Assert.assertTrue(
                 page.locator("#error")
@@ -93,11 +99,11 @@ public class LoginTest extends BaseTest {
         LoginPage loginPage =
                 new LoginPage(page);
 
-        loginPage.navigateToLoginPage();
-
+        loginPage.navigateToLoginPage(
+                config.getProperty("base.url"));
         loginPage.login(
-                "",
-                "");
+                config.getProperty("emptyUsername"),
+                config.getProperty("emptyPassword"));
 
         Assert.assertTrue(
                 page.locator("#error")

@@ -9,11 +9,9 @@ public class LoginPage {
         this.page = page;
     }
 
-    public void navigateToLoginPage() {
+    public void navigateToLoginPage(String url) {
 
-        page.navigate(
-                "https://practicetestautomation.com/practice-test-login/"
-        );
+        page.navigate(url);
     }
 
     public void login(
