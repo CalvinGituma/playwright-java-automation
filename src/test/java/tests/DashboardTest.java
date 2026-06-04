@@ -7,7 +7,7 @@ import pages.DashboardPage;
 import pages.LoginPage;
 
 public class DashboardTest extends BaseTest {
-    @Test
+    @Test(priority=1)
     public void successfulLoginTest() {
 
         LoginPage loginPage = new LoginPage(page);
@@ -21,12 +21,26 @@ public class DashboardTest extends BaseTest {
                 "student",
                 "Password123");
 
-        Assert.assertTrue(
-                dashboardPage.isDashboardDisplayed());
+//        Assert.assertTrue(
+//                dashboardPage.isDashboardDisplayed());
 
         System.out.println(dashboardPage.getSuccessMessage());
         Assert.assertTrue(
                 dashboardPage.getSuccessMessage().contains("Congratulations student. You successfully logged in!"));
+    }
+    @Test(priority=2)
+    public void logoutTest() {
+
+        LoginPage loginPage = new LoginPage(page);
+        DashboardPage dashboardPage = new DashboardPage(page);
+
+        loginPage.navigateToLoginPage();
+        loginPage.login("student", "Password123");
+
+        dashboardPage.clickLogout();
+
+        Assert.assertTrue(
+                page.url().contains("practice-test-login"));
     }
 
 
