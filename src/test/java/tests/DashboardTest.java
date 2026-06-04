@@ -1,0 +1,33 @@
+package tests;
+
+import base.BaseTest;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import pages.DashboardPage;
+import pages.LoginPage;
+
+public class DashboardTest extends BaseTest {
+    @Test
+    public void successfulLoginTest() {
+
+        LoginPage loginPage = new LoginPage(page);
+
+        DashboardPage dashboardPage =
+                new DashboardPage(page);
+
+        loginPage.navigateToLoginPage();
+
+        loginPage.login(
+                "student",
+                "Password123");
+
+        Assert.assertTrue(
+                dashboardPage.isDashboardDisplayed());
+
+        System.out.println(dashboardPage.getSuccessMessage());
+        Assert.assertTrue(
+                dashboardPage.getSuccessMessage().contains("Congratulations student. You successfully logged in!"));
+    }
+
+
+}
