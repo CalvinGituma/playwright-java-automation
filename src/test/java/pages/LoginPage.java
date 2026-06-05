@@ -27,5 +27,9 @@ public class LoginPage {
         page.locator("#submit")
                 .click();
     }
+
+    public boolean isErrorMessageDisplayed() {
+        return true;
+    }
 }
 

@@ -10,6 +10,12 @@ This project demonstrates UI test automation using Playwright and Java.
 - Playwright
 - Maven
 - TestNG
+- Framework Features
+  Technology Stack
+  Project Structure
+  How to Run Tests
+  Reports
+  Screenshots
 
 ## Project Structure
 
